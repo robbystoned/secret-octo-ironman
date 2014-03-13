@@ -7,9 +7,18 @@ import java.io.File;
 
 import javax.swing.JFileChooser;
 
+import nl.robbystoned.reverser.ui.NameReverserUI;
+/**
+ * 
+ * @author robertvds handles the select file or directory event and 
+ * passes it to the textbox
+ *
+ */
 public class NameReverserListener implements ActionListener {
 	List extensions;
-	public NameReverserListener() {
+	private NameReverserUI ui;
+	public NameReverserListener(NameReverserUI ui) {
+		this.ui = ui;
 	}
 
 	@Override
@@ -19,13 +28,8 @@ public class NameReverserListener implements ActionListener {
 		fileChooser.showOpenDialog(fileChooser);
 		File selectedFileOrDirectory = fileChooser.getSelectedFile();
 		if(selectedFileOrDirectory != null) {//file is null if cancel was pressed
-			if(selectedFileOrDirectory.isDirectory()) {
-				//iterate over all matching files in the directory
-			} else {
-				//single file mode
-			}
+			//set the filename to the textbox
+			ui.getFileOrDir().setText(selectedFileOrDirectory.getAbsolutePath());
 		}
-		
 	}
-
 }

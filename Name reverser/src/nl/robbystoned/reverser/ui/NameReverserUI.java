@@ -1,18 +1,16 @@
 package nl.robbystoned.reverser.ui;
 
 import java.awt.Button;
-import java.awt.Choice;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.List;
 import java.awt.RenderingHints;
+import java.awt.TextField;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import nl.robbystoned.reverser.actionlisteners.NameReverserListener;
 
 public class NameReverserUI extends JPanel {
 
@@ -20,9 +18,11 @@ public class NameReverserUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5634096799351334128L;
-	private Button button;
+	private Button fileSelectButton;
+	private Button startButton;
 	private JFrame frame;
 	private List extensions;
+	private TextField fileOrDir;
 	
 	public NameReverserUI() {
 		constructUI();
@@ -34,10 +34,15 @@ public class NameReverserUI extends JPanel {
 		frame.getContentPane().add(this);
 	    frame.setSize(800, 600);
 	    frame.setLayout(new FlowLayout());
-	    button = new Button("testbutton");
+	    fileSelectButton = new Button("Select file or folder");
+	    startButton = new Button("Start!");
+	    fileOrDir = new TextField(20);
+	    fileOrDir.setEditable(false);//only edit the value with the select button.
 	    extensions = new List(2,true);
-	    button.setSize(5, 20);
-	    frame.add(button);  
+	    fileSelectButton.setSize(5, 20);
+	    frame.add(fileSelectButton);
+	    frame.add(startButton);
+	    frame.add(fileOrDir);
 	    extensions.add(".mkv");
 	    extensions.add(".srt");
 	    frame.add(extensions);
@@ -45,10 +50,15 @@ public class NameReverserUI extends JPanel {
 	    frame.setVisible(true);
 	}
 	
-	public void setActionListener(ActionListener fileSelectorEvent){
-		button.addActionListener(fileSelectorEvent);
+	public void setActionListener(ActionListener fileSelectorEvent, ActionListener startEvent){
+		fileSelectButton.addActionListener(fileSelectorEvent);
+		startButton.addActionListener(startEvent);
 	}
 	
+	public TextField getFileOrDir() {
+		return fileOrDir;
+	}
+
 	public String[] getExtensionValues(){
 		return extensions.getSelectedItems();
 	}

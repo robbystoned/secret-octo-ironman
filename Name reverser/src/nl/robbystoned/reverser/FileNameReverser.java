@@ -3,6 +3,7 @@ package nl.robbystoned.reverser;
 import java.io.File;
 
 import nl.robbystoned.reverser.actionlisteners.NameReverserListener;
+import nl.robbystoned.reverser.actionlisteners.StartReverserListener;
 import nl.robbystoned.reverser.ui.NameReverserUI;
 
 public class FileNameReverser {
@@ -23,8 +24,9 @@ public class FileNameReverser {
 	}
 	
 	private void addActionListeners(){
-		NameReverserListener listener = new NameReverserListener();
-		nameReverserUI.setActionListener(listener);
+		NameReverserListener listener = new NameReverserListener(nameReverserUI);
+		StartReverserListener startListener = new StartReverserListener(nameReverserUI);
+		nameReverserUI.setActionListener(listener,startListener);
 	}
 	
 	private void reverseAllFilesInDirectory(String baseDir){
