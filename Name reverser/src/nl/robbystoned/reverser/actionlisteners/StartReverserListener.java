@@ -25,9 +25,14 @@ public class StartReverserListener implements ActionListener {
 				List<String> selectedExtensions = Arrays.asList(ui.getExtensions().getSelectedItems());
 				if(fileOrDir.isDirectory()){
 					//dir mode
+					File[] listFiles = fileOrDir.listFiles();
+					for(File file : listFiles){
+						if(file.isFile()){
+							processSingleFile(selectedExtensions, file);
+						}
+					}
 				} else {
 					//single file mode.
-					String fileName = fileOrDir.getAbsolutePath();
 					processSingleFile(selectedExtensions, fileOrDir);
 				}
 			}
