@@ -8,6 +8,8 @@ import java.awt.List;
 import java.awt.RenderingHints;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -45,11 +47,22 @@ public class NameReverserUI extends JPanel {
 	    frame.add(fileOrDir);
 	    extensions.add(".mkv");
 	    extensions.add(".srt");
+	    extensions.add(".avi");
 	    frame.add(extensions);
 	    extensions.getSelectedItem();
 	    frame.setVisible(true);
+	    frame.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent we)
+            {
+                System.exit(0);
+            }
+        });
 	}
 	
+	public List getExtensions() {
+		return extensions;
+	}
+
 	public void setActionListener(ActionListener fileSelectorEvent, ActionListener startEvent){
 		fileSelectButton.addActionListener(fileSelectorEvent);
 		startButton.addActionListener(startEvent);
