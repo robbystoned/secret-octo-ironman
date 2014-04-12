@@ -53,7 +53,8 @@ public class StartReverserListener implements ActionListener {
 		String extension = fileName .substring(fileName.lastIndexOf("."), fileName.length());
 		if(selectedExtensions.contains(extension)){
 			String nameWithoutExtension = fileName.substring(0, fileName.lastIndexOf("."));
-			System.out.println(file.renameTo(new File(baseDir + "/" + reverse(nameWithoutExtension)+extension)));
+			ui.appendToLog("Reversing name: " + nameWithoutExtension + " to " + reverse(nameWithoutExtension)+extension);
+			file.renameTo(new File(baseDir + "/" + reverse(nameWithoutExtension)+extension));
 		}
 	}
 	

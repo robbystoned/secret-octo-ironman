@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.List;
 import java.awt.RenderingHints;
+import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -25,6 +26,7 @@ public class NameReverserUI extends JPanel {
 	private JFrame frame;
 	private List extensions;
 	private TextField fileOrDir;
+	private TextArea textArea;
 	
 	public NameReverserUI() {
 		constructUI();
@@ -34,13 +36,13 @@ public class NameReverserUI extends JPanel {
 	private void constructUI() {
 		frame = new JFrame();
 		frame.getContentPane().add(this);
-	    frame.setSize(800, 600);
+	    frame.setSize(800, 400);
 	    frame.setLayout(new FlowLayout());
 	    fileSelectButton = new Button("Select file or folder");
 	    startButton = new Button("Start!");
 	    fileOrDir = new TextField(20);
 	    fileOrDir.setEditable(false);//only edit the value with the select button.
-	    extensions = new List(2,true);
+	    extensions = new List(3,true);
 	    fileSelectButton.setSize(5, 20);
 	    frame.add(fileSelectButton);
 	    frame.add(startButton);
@@ -48,8 +50,13 @@ public class NameReverserUI extends JPanel {
 	    extensions.add(".mkv");
 	    extensions.add(".srt");
 	    extensions.add(".avi");
+	    extensions.select(0);
+	    extensions.select(1);
+	    extensions.select(2);
 	    frame.add(extensions);
 	    extensions.getSelectedItem();
+	    textArea = new TextArea("", 10, 75);
+	    frame.add(textArea);
 	    frame.setVisible(true);
 	    frame.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent we)
@@ -82,4 +89,8 @@ public class NameReverserUI extends JPanel {
 	      RenderingHints.VALUE_ANTIALIAS_ON);
 	      
 	   }
+	public void appendToLog(String msg){
+		
+		textArea.append(msg + "\r\n");
+	}
 }
