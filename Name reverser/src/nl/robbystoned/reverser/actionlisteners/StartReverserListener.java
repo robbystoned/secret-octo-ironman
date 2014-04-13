@@ -7,13 +7,25 @@ import java.util.Arrays;
 import java.util.List;
 
 import nl.robbystoned.reverser.ui.NameReverserUI;
-
+/**
+ * copyright 2014
+ * @author robertvds
+ * the eventt listener for the start button
+ */
 public class StartReverserListener implements ActionListener {
 	private NameReverserUI ui;
+	/**
+	 * the constructor
+	 * @param nameReverserUI an instance of the ui that created it for callback purposes
+	 */
 	public StartReverserListener(NameReverserUI nameReverserUI) {
 		this.ui = nameReverserUI;//pass the ui to be able to get to the values in the interface
 	}
 
+	/**
+	 * performs the actual renaming based on if it is a file or directory 
+	 * and what filetypes were selected.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String selectedFile = ui.getFileOrDir().getText();
@@ -42,9 +54,9 @@ public class StartReverserListener implements ActionListener {
 	/**
 	 * reverses the name of one single file if the extension matches any of the extensions
 	 * in the arraylist
-	 * @param selectedExtensions
-	 * @param fileName
-	 * @param baseDir 
+	 * @param selectedExtensions the selected file extensions to rename
+	 * @param fileName the file to rename
+	 * @param baseDir the dir where the file is
 	 */
 	private void processSingleFile(List<String> selectedExtensions, File file) {
 		

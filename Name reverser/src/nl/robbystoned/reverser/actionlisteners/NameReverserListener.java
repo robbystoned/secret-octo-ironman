@@ -9,7 +9,7 @@ import javax.swing.JFileChooser;
 
 import nl.robbystoned.reverser.ui.NameReverserUI;
 /**
- * 
+ * copyright 2014
  * @author robertvds handles the select file or directory event and 
  * passes it to the textbox
  *
@@ -17,10 +17,17 @@ import nl.robbystoned.reverser.ui.NameReverserUI;
 public class NameReverserListener implements ActionListener {
 	List extensions;
 	private NameReverserUI ui;
+	/**
+	 * the construction
+	 * @param ui the instance of the ui that created it for callback purposes
+	 */
 	public NameReverserListener(NameReverserUI ui) {
 		this.ui = ui;
 	}
 
+	/**
+	 * handles the select file dialog
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JFileChooser fileChooser = new JFileChooser();
